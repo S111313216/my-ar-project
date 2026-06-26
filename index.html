@@ -3,24 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hank的 AR 體驗</title>
+    <title>Hank的 AR 北極熊</title>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; font-family: sans-serif; }
         model-viewer { width: 100%; height: 100%; }
-        #ar-button {
-            background-color: #111111; color: white; border-radius: 8px; border: 1px solid #333;
-            position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-            padding: 12px 24px; font-weight: bold; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        
+        /* 統一按鈕容器 */
+        .btn-container {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 85%;
+            max-width: 280px;
+        }
+
+        /* 原生 AR 按鈕樣式 */
+        .ar-btn {
+            background-color: #007bff; color: white; border-radius: 24px; border: none;
+            padding: 12px 24px; font-weight: bold; font-size: 14px; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,123,255,0.3); width: 100%; text-align: center;
+        }
+
+        /* 破牆跳轉按鈕樣式 */
+        .fallback-link {
+            color: #666666; font-size: 12px; text-decoration: underline; 
+            background: rgba(255,255,255,0.8); padding: 4px 8px; border-radius: 4px;
+            text-align: center; width: 100%; display: block; box-sizing: border-box;
         }
     </style>
 </head>
 <body>
 
     <model-viewer src="polar_bear.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="1">
-        <button slot="ar-button" id="ar-button">
-            📱 點擊在現實中擺放
-        </button>
+        
+        <div class="btn-container">
+            <button slot="ar-button" class="ar-btn">
+                📱 啟動 AR 擺放北極熊
+            </button>
+            
+            <a href="https://s111313216.github.io/my-ar-project/" target="_blank" class="fallback-link">
+                點擊無反應？請點此全螢幕開啟 AR
+            </a>
+        </div>
+
     </model-viewer>
 
 </body>
